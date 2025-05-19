@@ -14,6 +14,7 @@ class MediaFileSerializer(serializers.ModelSerializer):
         is_private = validated_data.get('is_private', False)
         from .utils import upload_to_bunny_storage
         cdn_url, file_name = upload_to_bunny_storage(file)
+
         if cdn_url:
             return MediaFile.objects.create(
                 original_filename=file.name,
